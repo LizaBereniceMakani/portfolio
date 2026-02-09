@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -10,25 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Fade-in animation on scroll
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.section, .hero-content').forEach(section => {
-        section.classList.add('fade-in');
-        observer.observe(section);
     });
 
     // Hamburger Menu Toggle (Mobile)
@@ -38,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            if(navLinks.style.display === 'flex') {
+            if (navLinks.style.display === 'flex') {
                 navLinks.style.flexDirection = 'column';
                 navLinks.style.position = 'absolute';
                 navLinks.style.top = '80px';
@@ -51,18 +40,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-// Add these styles dynamically for animations
-const styleSheet = document.createElement("style");
-styleSheet.innerText = `
-    .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-`;
-document.head.appendChild(styleSheet);
