@@ -432,3 +432,52 @@ footer {
     background-color: rgba(100, 255, 218, 0.2);
     transform: translateY(-2px);
 }
+/* Scroll Animations */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+#back-to-top.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#back-to-top:hover {
+    transform: translateY(-5px);
+    background-color: #55dcb8;
+    /* Slightly lighter accent */
+}
+
+/* Make project cards look clickable */
+.project-card {
+    cursor: pointer;
+}
